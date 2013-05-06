@@ -135,30 +135,6 @@ namespace TheExtension
                 fs.Close();
             }
             
-
-            //request.BeginGetResponse(
-            //    v =>
-            //    {
-
-            //        using (var responseStream = request.EndGetResponse(v).GetResponseStream())
-            //        {
-            //            var buffer = new byte[32 * 1024];
-            //            var fs = fileInfo.Open(FileMode.Open,FileAccess.Write);
-            //            int offset = 0;
-            //            int byteRead = 0;
-            //            do
-            //            {
-            //                byteRead = responseStream.Read(buffer,0,buffer.Length);
-            //                fs.Write(buffer, 0, byteRead);
-            //                offset += byteRead;
-            //            }
-            //            while (byteRead > 0);
-            //            fs.Flush();
-            //            fs.Close();
-
-            //        }
-            //    }, request);
-
         }
 
 
