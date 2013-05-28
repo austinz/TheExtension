@@ -69,15 +69,26 @@ namespace TheExtension
 
             var directoryInfo = new DirectoryInfo(filePath.AbsolutePath);
 
-            if (directoryInfo.If<DirectoryInfo>(y => y.Exists))
+            //if (directoryInfo.If<DirectoryInfo>(y => y.Exists))
+            //{
+            //    return directoryInfo;
+            //}
+            //else
+            //{
+            //    directoryInfo.IfThen(z => createIfNotExist, w => w.Create());
+            //    return directoryInfo.If<DirectoryInfo>(y => y.Exists) ? directoryInfo : null;
+
+            //}
+
+            if (directoryInfo.Exists)
             {
                 return directoryInfo;
             }
             else
             {
-                directoryInfo.IfThen<DirectoryInfo>(z => createIfNotExist, w => w.Create());
-                return directoryInfo.If<DirectoryInfo>(y => y.Exists) ? directoryInfo : null;
+                directoryInfo.IfThen(_ => createIfNotExist, _ => _.Create());
 
+                return directoryInfo.If<DirectoryInfo, DirectoryInfo>(_ => _.Exists, _ => _, _ => null);
             }
         }
 
@@ -111,7 +122,7 @@ namespace TheExtension
 
             var imgArray = "jpg,jpeg,png,gif,tiff".ToIEnumerable(",").ToArray();
 
-            
+
             var fileName = filePath.AbsoluteUri.ToIEnumerable("/").Last();
             var fileInfo = (directory.FullName + @"\" + fileName).ToFileInfo(true);
 
@@ -134,7 +145,17 @@ namespace TheExtension
                 fs.Flush();
                 fs.Close();
             }
-            
+
+        }
+
+        public static string Left(this String x, int number)
+        {
+            return x.If(_ => _.Length > number, _ => _.Substring(0, number), _ => _);
+        }
+
+        public static string Right(this String x, int number)
+        {
+            return x.If(_ => _.Length > number, _ => _.Substring(x.Length - number, number), _ => _);
         }
 
 

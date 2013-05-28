@@ -19,6 +19,14 @@ namespace TheExtensionTest
         }
 
         [TestMethod]
+        public void ToDirectoryInfoTest()
+        {
+            var path = @"c:\testttts";
+            var result = path.ToDirectoryInfo(true);
+            Assert.IsTrue(result.Exists);
+        }
+
+        [TestMethod]
         public void ToFileInfoTest()
         {
             var pathStr = "c:/test.txt";
@@ -40,6 +48,20 @@ namespace TheExtensionTest
             "http://localhost/welcome.png".Donwload("c:\\ttttttt".ToDirectoryInfo(true));
             "http://wanmotor.com/images/logo.png".Donwload("c:\\ttttttt".ToDirectoryInfo(true));
             "https://www.google.com.hk/images/nav_logo123.png".Donwload("c:\\ttttttt".ToDirectoryInfo(true));
+        }
+
+        [TestMethod]
+        public void StringLeftStripTest()
+        {
+            var result = "1234567".Left(2);
+            Assert.IsTrue(result == "12");
+        }
+
+        [TestMethod]
+        public void StringRightStripTest()
+        {
+            var result = "1234567".Right(3);
+            Assert.IsTrue(result == "567");
         }
     }
 }
