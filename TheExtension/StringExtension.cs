@@ -158,6 +158,16 @@ namespace TheExtension
             return x.If(_ => _.Length > number, _ => _.Substring(x.Length - number, number), _ => _);
         }
 
+        public static string DefaultIfNull(this string x, string defaultValue)
+        {
+            if (x == null)
+            {
+                return defaultValue;
+            }
+
+            return x;
+        }
+
 
     }
 }
