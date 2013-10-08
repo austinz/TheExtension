@@ -21,7 +21,7 @@ namespace TheExtension
             return result;
         }
 
-        public static FileInfo ToFileInfo(this String x, bool createIfNotExist = false)
+        public static FileInfo OpenAsFile(this String x, bool createIfNotExist = false)
         {
             Uri filePath;
             try
@@ -54,7 +54,7 @@ namespace TheExtension
             return null;
         }
 
-        public static DirectoryInfo ToDirectoryInfo(this string x, bool createIfNotExist = false)
+        public static DirectoryInfo OpenAsDirectory(this string x, bool createIfNotExist = false)
         {
             Uri filePath;
             try
@@ -124,7 +124,7 @@ namespace TheExtension
 
 
             var fileName = filePath.AbsoluteUri.ToIEnumerable("/").Last();
-            var fileInfo = (directory.FullName + @"\" + fileName).ToFileInfo(true);
+            var fileInfo = (directory.FullName + @"\" + fileName).OpenAsFile(true);
 
             var request = (HttpWebRequest)WebRequest.Create(filePath);
             request.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
@@ -158,7 +158,7 @@ namespace TheExtension
             return x.If(_ => _.Length > number, _ => _.Substring(x.Length - number, number), _ => _);
         }
 
-        public static string DefaultIfNull(this string x, string defaultValue)
+        public static string Default(this string x, string defaultValue)
         {
             if (x == null)
             {

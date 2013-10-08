@@ -22,7 +22,7 @@ namespace TheExtensionTest
         public void ToDirectoryInfoTest()
         {
             var path = @"c:\testttts";
-            var result = path.ToDirectoryInfo(true);
+            var result = path.OpenAsDirectory(true);
             Assert.IsTrue(result.Exists);
         }
 
@@ -30,7 +30,7 @@ namespace TheExtensionTest
         public void ToFileInfoTest()
         {
             var pathStr = "c:/test.txt";
-            Assert.IsTrue(pathStr.ToFileInfo(true).Exists);
+            Assert.IsTrue(pathStr.OpenAsFile(true).Exists);
         }
 
         [TestMethod]
@@ -44,10 +44,10 @@ namespace TheExtensionTest
         [TestMethod]
         public void DownloadTest()
         {
-            "http://baidu.com/robots.txt".Donwload("c:\\ttttttttttttt".ToDirectoryInfo(true));
-            "http://localhost/welcome.png".Donwload("c:\\ttttttt".ToDirectoryInfo(true));
-            "http://wanmotor.com/images/logo.png".Donwload("c:\\ttttttt".ToDirectoryInfo(true));
-            "https://www.google.com.hk/images/nav_logo123.png".Donwload("c:\\ttttttt".ToDirectoryInfo(true));
+            "http://baidu.com/robots.txt".Donwload("c:\\ttttttttttttt".OpenAsDirectory(true));
+            "http://localhost/welcome.png".Donwload("c:\\ttttttt".OpenAsDirectory(true));
+            "http://wanmotor.com/images/logo.png".Donwload("c:\\ttttttt".OpenAsDirectory(true));
+            "https://www.google.com.hk/images/nav_logo123.png".Donwload("c:\\ttttttt".OpenAsDirectory(true));
         }
 
         [TestMethod]
